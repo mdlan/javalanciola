@@ -6,12 +6,86 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- Discounts and Tax Rules -->
+    <!-- 1. If the total price of a mouse exceeds 1000, a 10% discount will be applied. -->
+    <!-- 2. If the total price of a keyboard exceeds 2000, a 15% discount will be applied. -->
+    <!-- 3. If the total price of a monitor exceeds 4000, a 7% discount will be applied. -->
+    <!-- 4. If the total price of a motherboard exceeds 6000, a 6% discount will be applied. -->
+    <!-- 5. If the total price of 2 remaining items exceeds 10000, a 10% discount will be applied. -->
+    <!-- 6. A 5% student discount will be applied to the selected item. -->
+    <!-- 7. If the total price (after discounts) exceeds 5000, an 8% tax will be applied. -->
     <script language="javascript" type="text/javascript">
-        var n = parseInt(prompt("Enter a number less than 100: "));
-        while(n<100){
-            document.writeln(n);
-            n++;
+        const mousePrice = 1200;
+        const keyboardPrice = 2500;
+        const monitorPrice = 4500;
+        const motherboardPrice = 7000;
+        const hardDiskPrice = 3000;
+        const tabletPrice = 1500;
+
+        let product = prompt("Enter the product you want to buy:").toLowerCase();
+        let quantity = parseInt(prompt("Enter the quantity of the product you want to buy:"));
+        let totalPrice = 0;
+
+        if (product === "mouse") {
+            totalPrice = mousePrice * quantity;
+            document.write("Total price of mouse: " + totalPrice + "<br>");
+            if (totalPrice > 1000) {
+                let discount = totalPrice * 0.10;
+                totalPrice -= discount;
+                document.write("Discount applied: " + discount + "<br>");
+            }
+        } else if (product === "keyboard") {
+            totalPrice = keyboardPrice * quantity;
+            document.write("Total price of keyboard: " + totalPrice + "<br>");
+            if (totalPrice > 2000) {
+                let discount = totalPrice * 0.15;
+                totalPrice -= discount;
+                document.write("Discount applied: " + discount + "<br>");
+            }
+        } else if (product === "monitor") {
+            totalPrice = monitorPrice * quantity;
+            document.write("Total price of monitor: " + totalPrice + "<br>");
+            if (totalPrice > 4000) {
+                let discount = totalPrice * 0.07;
+                totalPrice -= discount;
+                document.write("Discount applied: " + discount + "<br>");
+            }
+        } else if (product === "motherboard") {
+            totalPrice = motherboardPrice * quantity;
+            document.write("Total price of motherboard: " + totalPrice + "<br>");
+            if (totalPrice > 6000) {
+                let discount = totalPrice * 0.06;
+                totalPrice -= discount;
+                document.write("Discount applied: " + discount + "<br>");
+            }
+        } else if (product === "harddisk") {
+            totalPrice = hardDiskPrice * quantity;
+            document.write("Total price of hard disk: " + totalPrice + "<br>");
+        } else if (product === "tablet") {
+            totalPrice = tabletPrice * quantity;
+            document.write("Total price of tablet: " + totalPrice + "<br>");
+        } else {
+            alert("Invalid product selected.");
         }
+
+        // Ask if the user is a student
+        let isStudent = prompt("Are you a student? (yes or no):").toLowerCase();
+        if (isStudent === "yes") {
+            let studentDiscount = totalPrice * 0.05;
+            totalPrice -= studentDiscount;
+            document.write("Student discount applied: " + studentDiscount + "<br>");
+        } else {
+            document.write("No student discount applied.<br>");
+        }
+
+        // Apply tax if total price exceeds 5000
+        if (totalPrice > 5000) {
+            let tax = totalPrice * 0.08;
+            totalPrice += tax;
+            document.write("Tax applied: " + tax + "<br>");
+        }
+
+        document.write("Final total price: " + totalPrice + "<br>");
     </script>
 </body>
 </html>
